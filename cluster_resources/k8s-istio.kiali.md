@@ -2,18 +2,20 @@ k8s-istio.md
 
 ## First was to create the namespace 
 
-`kubectl create namespace istio-system`
+          `kubectl create namespace istio-system`
 
 
 The intention was to use helm chart to istio but I got time out issues with the repos.
 
 Embarked on downloading istio
 
-`curl -L https://istio.io/downloadIstio | sh -`
+```
+curl -L https://istio.io/downloadIstio | sh -
 
-`cd istio-1.12.0`
+cd istio-1.12.0
 
-`export PATH=$PWD/bin:$PATH`
+export PATH=$PWD/bin:$PATH
+```
 
 ## Install Istio
 
