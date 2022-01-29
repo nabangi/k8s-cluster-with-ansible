@@ -19,23 +19,23 @@ export PATH=$PWD/bin:$PATH
 
 ## Install Istio
 
-`istioctl install`
+          `istioctl install`
 
-`kubectl label namespace default istio-injection=enabled`
+          `kubectl label namespace default istio-injection=enabled`
 
 Deploy an application in the cluster
 Sample microservice app 
 
-`kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`
+          `kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`
 
 ## Configure automatic Envoy Proxy Injection
 
 
-`kubectl label namespace default istio-injection=enabled`
+          `kubectl label namespace default istio-injection=enabled`
 
 # challenges I need some more time to resolve, issues to do with the loadbalancer in the cluster
 
-`istioctl analyze`  
+          `istioctl analyze`  
 
 Warning [IST0103] (Pod default/nginx-blue-7699fc7b8b-kzjgc) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
 Warning [IST0103] (Pod default/nginx-green-698797fb8c-5szl6) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
