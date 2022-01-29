@@ -43,16 +43,18 @@ Warning [IST0103] (Pod default/nginx-grey-7c45bc4899-lcw57) The pod is missing t
 
 ### Determining the ingress IP and Port
 
-`kubectl get svc istio-ingressgateway -n istio-system`
-
+          `kubectl get svc istio-ingressgateway -n istio-system`
+```
 NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                                                                      AGE
 istio-ingressgateway   LoadBalancer   10.64.0.252   10.64.0.114   15021:30305/TCP,80:31952/TCP,443:30830/TCP,31400:32693/TCP,15443:31053/TCP   41m
+```
 
 ## Get kiali Dashboard
 
-`kubectl apply -f samples/addons`
-`kubectl rollout status deployment/kiali -n istio-system`
-
+```
+kubectl apply -f samples/addons
+kubectl rollout status deployment/kiali -n istio-system
+```
 ## Access Dashboard
 
 `istioctl dashboard kiali`
