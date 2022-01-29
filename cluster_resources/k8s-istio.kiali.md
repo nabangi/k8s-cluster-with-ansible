@@ -214,5 +214,5 @@ metallb-system    Active   20d
 #### Checking the default injection policy in the istio-sidecar-injector configmap
 
           `kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
-policy: enabled
+policy: `enabled`
 
