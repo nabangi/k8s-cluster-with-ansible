@@ -201,16 +201,18 @@ replicaset.apps/prometheus-8945b4d5               1         1         0       10
 #### Invoking the injection webhook for pods
       
           `kubectl get namespace -L istio-injection`
+```
 NAME              STATUS   AGE     ISTIO-INJECTION
 default           Active   20d     enabled
 istio-system      Active   3h25m   
 kube-node-lease   Active   20d     
 kube-public       Active   20d     
 kube-system       Active   20d     
-metallb-system    Active   20d     
+metallb-system    Active   20d    
+```
 
 #### Checking the default injection policy in the istio-sidecar-injector configmap
 
-`kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
+          `kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
 policy: enabled
 
