@@ -36,11 +36,11 @@ Sample microservice app
 # challenges I need some more time to resolve, issues to do with the loadbalancer in the cluster
 
           `istioctl analyze`  
-
+```
 Warning [IST0103] (Pod default/nginx-blue-7699fc7b8b-kzjgc) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
 Warning [IST0103] (Pod default/nginx-green-698797fb8c-5szl6) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
 Warning [IST0103] (Pod default/nginx-grey-7c45bc4899-lcw57) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
-
+```
 ### Determining the ingress IP and Port
 
           `kubectl get svc istio-ingressgateway -n istio-system`
@@ -57,7 +57,7 @@ kubectl rollout status deployment/kiali -n istio-system
 ```
 ## Access Dashboard
 
-`istioctl dashboard kiali`
+          `istioctl dashboard kiali`
 
 
 # Blue/Green Deployment model
@@ -68,7 +68,8 @@ I have learnt interresting pespectives from this infrastructure setup which is a
 
 Thank you
 
-`kubectl get all -n istio-system`
+          `kubectl get all -n istio-system`
+```
 NAME                                        READY   STATUS              RESTARTS   AGE
 pod/grafana-cf9797cf8-bls45                 0/1     Evicted             0          10m
 pod/grafana-cf9797cf8-lbgzj                 0/1     Evicted             0          7m35s
@@ -108,10 +109,11 @@ replicaset.apps/istiod-64d957d6bc                 1         1         1       36
 replicaset.apps/jaeger-5f65fdbf9b                 1         1         1       10m
 replicaset.apps/kiali-79866d6f79                  1         1         1       10m
 replicaset.apps/prometheus-8945b4d5               1         1         0       10m
-
+```
 ## Istio proxy errors and troubleshooting
 
-`kubectl get mutatingwebhookconfiguration istio-sidecar-injector -o yaml | grep "namespaceSelector:" -A5`
+          `kubectl get mutatingwebhookconfiguration istio-sidecar-injector -o yaml | grep "namespaceSelector:" -A5`
+```
           f:namespaceSelector:
             f:matchExpressions: {}
           f:objectSelector:
@@ -195,10 +197,10 @@ replicaset.apps/prometheus-8945b4d5               1         1         0       10
       operator: DoesNotExist
     - key: istio.io/rev
       operator: DoesNotExist
-
+```
 #### Invoking the injection webhook for pods
       
-`kubectl get namespace -L istio-injection`
+          `kubectl get namespace -L istio-injection`
 NAME              STATUS   AGE     ISTIO-INJECTION
 default           Active   20d     enabled
 istio-system      Active   3h25m   
