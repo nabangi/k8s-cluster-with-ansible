@@ -267,3 +267,11 @@ argocd app create {APP NAME} \
 `argocd app list`
 
 `argocd app get {APP NAME}`
+
+#### Synchronizing an APP
+
+`argocd app sync {APP NAME}`
+
+You can confirm it is running via
+
+`kubectl -n argocd get all`
