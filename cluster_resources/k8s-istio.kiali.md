@@ -232,3 +232,15 @@ For production preferably use Autopilot which commit all configs to git so ArgoC
 `kubectl apply -f service.yml`
 
 It is a standard NodePort service resource however, for production Ingress is most preferred. 
+
+#### Login the ArgoCD UI
+
+`kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > admin-pass.txt`
+
+# Install ArgoCD CLI
+
+```
+curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+chmod +x /usr/local/bin/argocd
+```
+
