@@ -247,3 +247,12 @@ Test it
 
 `argocd help`
 
+Login with CLI
+
+`argocd login localhost:30443 --insecure`
+
+Sample Commands
+
+`argocd version`
+
+`argocd app list`
