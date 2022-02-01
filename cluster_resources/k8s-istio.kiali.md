@@ -216,26 +216,27 @@ metallb-system    Active   20d
           `kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
 policy: `enabled`
 
+
 # Deploy ArgoCD directly using manifests
 
-`kubectl create namespace argocd`
-`kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
+          `kubectl create namespace argocd`
+          `kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
 
 View Deployment
 
-`kubectl get pods -n argocd`
+          `kubectl get pods -n argocd`
 
 For production preferably use Autopilot which commit all configs to git so ArgoCD can manage itself using GitOps
 
 # Expose the ArgoCD UI
 
-`kubectl apply -f service.yml`
+          `kubectl apply -f service.yml`
 
 It is a standard NodePort service resource however, for production Ingress is most preferred. 
 
 #### Login the ArgoCD UI
 
-`kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > admin-pass.txt`
+          `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > admin-pass.txt`
 
 # Install ArgoCD CLI
 
@@ -245,11 +246,11 @@ chmod +x /usr/local/bin/argocd
 ```
 Test it
 
-`argocd help`
+          `argocd help`
 
 Login with CLI
 
-`argocd login localhost:30443 --insecure`
+          `argocd login localhost:30443 --insecure`
 
 Sample Commands
 
