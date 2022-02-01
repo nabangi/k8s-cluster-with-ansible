@@ -2,7 +2,7 @@ k8s-istio.md
 
 ## First was to create the namespace 
 
-          `kubectl create namespace istio-system`
+          kubectl create namespace istio-system
 
 
 The intention was to use helm chart to istio but I got time out issues with the repos.
@@ -26,16 +26,16 @@ export PATH=$PWD/bin:$PATH
 Deploy an application in the cluster
 Sample microservice app 
 
-          `kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`
+          kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 
 ## Configure automatic Envoy Proxy Injection
 
 
-          `kubectl label namespace default istio-injection=enabled`
+          kubectl label namespace default istio-injection=enabled
 
 # challenges I need some more time to resolve, issues to do with the loadbalancer in the cluster
 
-          `istioctl analyze`  
+          istioctl analyze  
 ```
 Warning [IST0103] (Pod default/nginx-blue-7699fc7b8b-kzjgc) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
 Warning [IST0103] (Pod default/nginx-green-698797fb8c-5szl6) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
@@ -43,7 +43,7 @@ Warning [IST0103] (Pod default/nginx-grey-7c45bc4899-lcw57) The pod is missing t
 ```
 ### Determining the ingress IP and Port
 
-          `kubectl get svc istio-ingressgateway -n istio-system`
+          kubectl get svc istio-ingressgateway -n istio-system
 ```
 NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                                                                      AGE
 istio-ingressgateway   LoadBalancer   10.64.0.252   10.64.0.114   15021:30305/TCP,80:31952/TCP,443:30830/TCP,31400:32693/TCP,15443:31053/TCP   41m
@@ -57,7 +57,7 @@ kubectl rollout status deployment/kiali -n istio-system
 ```
 ## Access Dashboard
 
-          `istioctl dashboard kiali`
+          istioctl dashboard kiali
 
 
 # Blue/Green Deployment model
@@ -68,7 +68,7 @@ I have learnt interresting pespectives from this infrastructure setup which is a
 
 Thank you
 
-          `kubectl get all -n istio-system`
+          kubectl get all -n istio-system
 ```
 NAME                                        READY   STATUS              RESTARTS   AGE
 pod/grafana-cf9797cf8-bls45                 0/1     Evicted             0          10m
@@ -112,7 +112,7 @@ replicaset.apps/prometheus-8945b4d5               1         1         0       10
 ```
 ## Istio proxy errors and troubleshooting
 
-          `kubectl get mutatingwebhookconfiguration istio-sidecar-injector -o yaml | grep "namespaceSelector:" -A5`
+          kubectl get mutatingwebhookconfiguration istio-sidecar-injector -o yaml | grep "namespaceSelector:" -A5
 ```
           f:namespaceSelector:
             f:matchExpressions: {}
@@ -213,30 +213,30 @@ metallb-system    Active   20d
 
 #### Checking the default injection policy in the istio-sidecar-injector configmap
 
-          `kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
+          kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:
 policy: `enabled`
 
 
 # Deploy ArgoCD directly using manifests
 
-          `kubectl create namespace argocd`
-          `kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
+          kubectl create namespace argocd
+          kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 View Deployment
 
-          `kubectl get pods -n argocd`
+          kubectl get pods -n argocd
 
 For production preferably use Autopilot which commit all configs to git so ArgoCD can manage itself using GitOps
 
 # Expose the ArgoCD UI
 
-          `kubectl apply -f service.yml`
+          kubectl apply -f service.yml
 
 It is a standard NodePort service resource however, for production Ingress is most preferred. 
 
 #### Login the ArgoCD UI
 
-          `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > admin-pass.txt`
+          kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > admin-pass.txt
 
 # Install ArgoCD CLI
 
@@ -246,15 +246,15 @@ chmod +x /usr/local/bin/argocd
 ```
 Test it
 
-          `argocd help`
+          argocd help
 
 Login with CLI
 
-          `argocd login localhost:30443 --insecure`
+          argocd login localhost:30443 --insecure
 
 Sample Commands
 
-`argocd version`
+          argocd version
 
 # Creating an ArgoCD Application with argocd CLI
 ```
