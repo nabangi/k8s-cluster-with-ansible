@@ -243,4 +243,7 @@ It is a standard NodePort service resource however, for production Ingress is mo
 curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 chmod +x /usr/local/bin/argocd
 ```
+Test it
+
+`argocd help`
 
