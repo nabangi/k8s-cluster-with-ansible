@@ -255,4 +255,15 @@ Sample Commands
 
 `argocd version`
 
+# Creating an ArgoCD Application with argocd CLI
+```
+argocd app create {APP NAME} \
+--project {PROJECT} \
+--repo {GIT REPO} \
+--path {APP FOLDER} \
+--dest-namespace {NAMESPACE} \
+--dest-server {SERVER URL}
+```
 `argocd app list`
+
+`argocd app get {APP NAME}`
