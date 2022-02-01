@@ -224,6 +224,11 @@ policy: `enabled`
 View Deployment
 
 `kubectl get pods -n argocd`
+
 For production preferably use Autopilot which commit all configs to git so ArgoCD can manage itself using GitOps
 
+# Expose the ArgoCD UI
 
+`kubectl apply -f service.yml`
+
+It is a standard NodePort service resource however, for production Ingress is most preferred. 
