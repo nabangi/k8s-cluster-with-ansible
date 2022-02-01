@@ -265,14 +265,16 @@ argocd app create {APP NAME} \
 --dest-namespace {NAMESPACE} \
 --dest-server {SERVER URL}
 ```
-`argocd app list`
+```
+argocd app list
 
-`argocd app get {APP NAME}`
+argocd app get {APP NAME}
+```
 
 #### Synchronizing an APP
 
-`argocd app sync {APP NAME}`
+          argocd app sync {APP NAME}
 
 You can confirm it is running via
 
-`kubectl -n argocd get all`
+          kubectl -n argocd get all
