@@ -19,9 +19,9 @@ export PATH=$PWD/bin:$PATH
 
 ## Install Istio
 
-          `istioctl install`
+          istioctl install
 
-          `kubectl label namespace default istio-injection=enabled`
+          kubectl label namespace default istio-injection=enabled
 
 Deploy an application in the cluster
 Sample microservice app 
