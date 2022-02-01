@@ -1,6 +1,6 @@
 k8s-istio.md
 
-## First was to create the namespace 
+## First lets create the namespace 
 
           kubectl create namespace istio-system
 
