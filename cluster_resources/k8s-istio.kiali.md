@@ -208,3 +208,9 @@ metallb-system    Active   20d
 `kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
 policy: enabled
 
+# Deploy ArgoCD directly using manifests
+
+`kubectl create namespace argocd`
+`kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
+
+For production preferably use Autopilot which commit all configs to git so ArgoCD can manage itself using GitOps
