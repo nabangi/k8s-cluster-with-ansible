@@ -221,4 +221,9 @@ policy: `enabled`
 `kubectl create namespace argocd`
 `kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml`
 
+View Deployment
+
+`kubectl get pods -n argocd`
 For production preferably use Autopilot which commit all configs to git so ArgoCD can manage itself using GitOps
+
+
