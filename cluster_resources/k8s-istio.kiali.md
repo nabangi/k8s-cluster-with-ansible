@@ -2,58 +2,62 @@ k8s-istio.md
 
 ## First was to create the namespace 
 
-`kubectl create namespace istio-system`
+          `kubectl create namespace istio-system`
 
 
 The intention was to use helm chart to istio but I got time out issues with the repos.
 
 Embarked on downloading istio
 
-`curl -L https://istio.io/downloadIstio | sh -`
+```
+curl -L https://istio.io/downloadIstio | sh -
 
-`cd istio-1.12.0`
+cd istio-1.12.0
 
-`export PATH=$PWD/bin:$PATH`
+export PATH=$PWD/bin:$PATH
+```
 
 ## Install Istio
 
-`istioctl install`
+          `istioctl install`
 
-`kubectl label namespace default istio-injection=enabled`
+          `kubectl label namespace default istio-injection=enabled`
 
 Deploy an application in the cluster
 Sample microservice app 
 
-`kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`
+          `kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`
 
 ## Configure automatic Envoy Proxy Injection
 
 
-`kubectl label namespace default istio-injection=enabled`
+          `kubectl label namespace default istio-injection=enabled`
 
 # challenges I need some more time to resolve, issues to do with the loadbalancer in the cluster
 
-`istioctl analyze`  
-
+          `istioctl analyze`  
+```
 Warning [IST0103] (Pod default/nginx-blue-7699fc7b8b-kzjgc) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
 Warning [IST0103] (Pod default/nginx-green-698797fb8c-5szl6) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
 Warning [IST0103] (Pod default/nginx-grey-7c45bc4899-lcw57) The pod is missing the Istio proxy. This can often be resolved by restarting or redeploying the workload.
-
+```
 ### Determining the ingress IP and Port
 
-`kubectl get svc istio-ingressgateway -n istio-system`
-
+          `kubectl get svc istio-ingressgateway -n istio-system`
+```
 NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)                                                                      AGE
 istio-ingressgateway   LoadBalancer   10.64.0.252   10.64.0.114   15021:30305/TCP,80:31952/TCP,443:30830/TCP,31400:32693/TCP,15443:31053/TCP   41m
+```
 
 ## Get kiali Dashboard
 
-`kubectl apply -f samples/addons`
-`kubectl rollout status deployment/kiali -n istio-system`
-
+```
+kubectl apply -f samples/addons
+kubectl rollout status deployment/kiali -n istio-system
+```
 ## Access Dashboard
 
-`istioctl dashboard kiali`
+          `istioctl dashboard kiali`
 
 
 # Blue/Green Deployment model
@@ -64,7 +68,8 @@ I have learnt interresting pespectives from this infrastructure setup which is a
 
 Thank you
 
-`kubectl get all -n istio-system`
+          `kubectl get all -n istio-system`
+```
 NAME                                        READY   STATUS              RESTARTS   AGE
 pod/grafana-cf9797cf8-bls45                 0/1     Evicted             0          10m
 pod/grafana-cf9797cf8-lbgzj                 0/1     Evicted             0          7m35s
@@ -104,10 +109,11 @@ replicaset.apps/istiod-64d957d6bc                 1         1         1       36
 replicaset.apps/jaeger-5f65fdbf9b                 1         1         1       10m
 replicaset.apps/kiali-79866d6f79                  1         1         1       10m
 replicaset.apps/prometheus-8945b4d5               1         1         0       10m
-
+```
 ## Istio proxy errors and troubleshooting
 
-`kubectl get mutatingwebhookconfiguration istio-sidecar-injector -o yaml | grep "namespaceSelector:" -A5`
+          `kubectl get mutatingwebhookconfiguration istio-sidecar-injector -o yaml | grep "namespaceSelector:" -A5`
+```
           f:namespaceSelector:
             f:matchExpressions: {}
           f:objectSelector:
@@ -191,22 +197,24 @@ replicaset.apps/prometheus-8945b4d5               1         1         0       10
       operator: DoesNotExist
     - key: istio.io/rev
       operator: DoesNotExist
-
+```
 #### Invoking the injection webhook for pods
       
-`kubectl get namespace -L istio-injection`
+          `kubectl get namespace -L istio-injection`
+```
 NAME              STATUS   AGE     ISTIO-INJECTION
 default           Active   20d     enabled
 istio-system      Active   3h25m   
 kube-node-lease   Active   20d     
 kube-public       Active   20d     
 kube-system       Active   20d     
-metallb-system    Active   20d     
+metallb-system    Active   20d    
+```
 
 #### Checking the default injection policy in the istio-sidecar-injector configmap
 
-`kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
-policy: enabled
+          `kubectl -n istio-system get configmap istio-sidecar-injector -o jsonpath='{.data.config}' | grep policy:`
+policy: `enabled`
 
 # Deploy ArgoCD directly using manifests
 
