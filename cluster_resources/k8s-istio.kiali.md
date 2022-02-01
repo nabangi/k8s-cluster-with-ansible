@@ -200,7 +200,7 @@ replicaset.apps/prometheus-8945b4d5               1         1         0       10
 ```
 #### Invoking the injection webhook for pods
       
-          `kubectl get namespace -L istio-injection`
+          kubectl get namespace -L istio-injection
 ```
 NAME              STATUS   AGE     ISTIO-INJECTION
 default           Active   20d     enabled
