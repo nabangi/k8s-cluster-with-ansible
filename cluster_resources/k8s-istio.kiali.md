@@ -1,4 +1,4 @@
-# ArgoCD | ISTIO | PROMETHEUS | KIALI
+#  ISTIO | PROMETHEUS | KIALI | ArgoCD
 
 ## First lets create the namespace 
 
