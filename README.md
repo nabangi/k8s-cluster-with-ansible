@@ -2,8 +2,8 @@
 
 
 - The kubernetes cluster is deployed using Ansible.
-- Then deployed **Istio** as a service mesh with sidecars for deployments.
-- Incoporated the **Kiali** dashboard and **Prometheus** for monitoring.
+- Then deployed **Istio** as a Service mesh with sidecars for deployments.
+- Incoporated **Prometheus** and **Kiali** dashboard for monitoring.
 - **ArgoCD** came in play to implement the **GitOps Principles**.
 
 #DevOps
