@@ -277,12 +277,13 @@ argocd app get {APP NAME}
 
 You can confirm it is running via
 
-<<<<<<< HEAD
     kubectl -n argocd get all
 
 ## Managing  Secrets!
+Ensuring your cluster secrets are safe to commit to git!
 
 Converting sealed secrets to k8s secrets using bitnami sealed secrets controller in your cluster
+
 ```
 helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
 helm repo update
@@ -293,3 +294,13 @@ The controller comes with the associated kubeseal that encrypts  k8s secrets
 Install following this directions
 
     https://github.com/bitnami-labs/sealed-secrets/blob/main/README.md#installation
+
+Secrets are  cluster and namespace specific
+
+Encrypts an existing secrests file;
+
+    kubeseal -n my-namespace < .db-creds.yaml > db-creds.json
+
+You can then apply the secret on the cluster;
+
+    kubectl apply -f db-creds.json -n my-namespace
