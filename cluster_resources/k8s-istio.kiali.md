@@ -283,9 +283,13 @@ You can confirm it is running via
 ## Managing  Secrets!
 
 Converting sealed secrets to k8s secrets using bitnami sealed secrets controller in your cluster
-
-`helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets`
-`helm repo update`
-`helm install sealed-secrets-controller sealed-secrets/sealed-secrets`
-
+```
+helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets
+helm repo update
+helm install sealed-secrets-controller sealed-secrets/sealed-secrets
+```
 The controller comes with the associated kubeseal that encrypts  k8s secrets
+
+Install following this directions
+
+    https://github.com/bitnami-labs/sealed-secrets/blob/main/README.md#installation
