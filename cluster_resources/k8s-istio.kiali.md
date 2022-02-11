@@ -275,3 +275,9 @@ argocd app create {APP NAME} \
 You can confirm it is running via
 
 `kubectl -n argocd get all`
+
+## Managing  Secrets!
+
+`helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets`
+`helm repo update`
+`helm install sealed-secrets-controller sealed-secrets/sealed-secrets`
