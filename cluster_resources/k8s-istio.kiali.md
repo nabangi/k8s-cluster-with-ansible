@@ -236,7 +236,7 @@ It is a standard NodePort service resource however, for production Ingress is mo
 
 #### Login the ArgoCD UI
 
-          kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > admin-pass.txt
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > admin-pass.txt
 
 # Install ArgoCD CLI
 
@@ -246,15 +246,15 @@ chmod +x /usr/local/bin/argocd
 ```
 Test it
 
-          argocd help
+    argocd help
 
 Login with CLI
 
-          argocd login localhost:30443 --insecure
+    argocd login localhost:30443 --insecure
 
 Sample Commands
 
-          argocd version
+    argocd version
 
 # Creating an ArgoCD Application with argocd CLI
 ```
@@ -273,18 +273,19 @@ argocd app get {APP NAME}
 
 #### Synchronizing an APP
 
-          argocd app sync {APP NAME}
+    argocd app sync {APP NAME}
 
 You can confirm it is running via
 
 <<<<<<< HEAD
-`kubectl -n argocd get all`
+    kubectl -n argocd get all
 
 ## Managing  Secrets!
+
+Converting sealed secrets to k8s secrets using bitnami sealed secrets controller in your cluster
 
 `helm repo add sealed-secrets https://bitnami-labs.github.io/sealed-secrets`
 `helm repo update`
 `helm install sealed-secrets-controller sealed-secrets/sealed-secrets`
-=======
-          kubectl -n argocd get all
->>>>>>> 5de7bb5146890ad6119dd73d1cd412cfa28c4c41
+
+The controller comes with the associated kubeseal that encrypts  k8s secrets
