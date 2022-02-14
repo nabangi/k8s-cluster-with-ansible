@@ -266,6 +266,16 @@ argocd app create {APP NAME} \
 --dest-server {SERVER URL}
 ```
 ```
+argocd app create demo \
+--project default \
+--repo https://github.com/nabangi/gitops-certification-examples \
+--path "./helm-app/" \
+--sync-policy auto \
+--dest-namespace default \
+--dest-server https://kubernetes.default.svc
+```
+
+```
 argocd app list
 
 argocd app get {APP NAME}
