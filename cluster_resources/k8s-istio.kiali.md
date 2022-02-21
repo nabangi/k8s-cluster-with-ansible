@@ -314,3 +314,14 @@ Encrypts an existing secrests file;
 You can then apply the secret on the cluster;
 
     kubectl apply -f db-creds.json -n my-namespace
+# Kustomize
+
+```
+argocd app create demo \
+--project default \
+--repo https://github.com/nabangi/gitops-certification-examples \
+--path ./kustomize-app/overlays/staging \
+--sync-policy auto \
+--dest-namespace default \
+--dest-server https://kubernetes.default.svc
+```
